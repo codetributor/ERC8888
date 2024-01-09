@@ -87,7 +87,8 @@ contract Royalty {
 
 	function setSpecifiedClaimant(address _specifiedClaimant, uint256 _tokenId) public {
 		require(tokens[_tokenId].tokenOwner == msg.sender, "you are not the owner");
-		require(!checkIfBlacklisted(_specifiedClaimant) == true, "blacklisted"); 
+		require(checkIfBlacklisted(_specifiedClaimant) == false, "blacklisted");
+		tokens[_tokenId].isSpecifiedClaimant = true; 
 		tokens[_tokenId].specifiedClaimant = _specifiedClaimant;
 	}
 
