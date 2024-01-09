@@ -73,11 +73,10 @@ contract Royalty {
 		_balances[msg.sender].push(token);
 	}
 
-	function makeClaimable(uint256 _tokenId, uint256 _price, bool _isSpecifiedClaimant) public {
+	function makeClaimable(uint256 _tokenId, uint256 _price) public {
 		require(tokens[_tokenId].tokenOwner == msg.sender, "you are not the owner");
 		tokens[_tokenId].claimable = true;
 		tokens[_tokenId].price = _price;
-		tokens[_tokenId].isSpecifiedClaimant =_isSpecifiedClaimant;
 	}
 
 	function changePrice(uint256 _tokenId, uint256 _price) public {
