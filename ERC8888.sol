@@ -42,7 +42,7 @@ contract Royalty {
 		uint256 price;
 		string uri;
 		uint256 royalty;
-		address marketplace;
+		address marketplaceAddress;
 		uint marketplaceFee;
 		bool isMarketplace;
 	}
@@ -90,6 +90,12 @@ contract Royalty {
 		require(checkIfBlacklisted(_specifiedClaimant) == false, "blacklisted");
 		tokens[_tokenId].isSpecifiedClaimant = true; 
 		tokens[_tokenId].specifiedClaimant = _specifiedClaimant;
+	}
+
+	function addToMarketplace(uint256 _tokenId, address _marketAddress, uint256 _marketFee) public {
+		tokens[_tokenId].isMarketplace = true;
+		tokens[_tokenId].marketplaceFee = _marketFee;
+		tokens[_tokenId].marketplaceAddress = _marketAddress;
 	}
 
 	function claim(uint256 _tokenId) public payable {
