@@ -118,7 +118,7 @@ contract Royalty {
 			require(success0 && success1, "distribution did not go through");
 		} else {
 			(bool success0, ) = tokens[_tokenId].tokenOwner.call{value: _sellValue}(""); 
-			(bool success1, ) = tokens[_tokenId].tokenOwner.call{value: _royaltyFee}("");
+			(bool success1, ) = address(this).call{value: _royaltyFee}("");
 			removeToken(_tokenId, tokens[_tokenId].tokenOwner);
 			tokens[_tokenId].tokenOwner = msg.sender;
 			require(success0 && success1, "distribution did not go through");
